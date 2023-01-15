@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2023_01_15_191257) do
     t.integer "comments_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "photos_count"
+    t.integer "photos_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
