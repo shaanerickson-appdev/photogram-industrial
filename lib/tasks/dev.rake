@@ -8,8 +8,13 @@ task sample_data: :environment do
     Like.destroy_all
   end
 
+  names = Array.new
+  names << "alice"
+  names << "bob"
   12.times do
-    name = Faker::Name.first_name
+    names << Faker::Name.first_name
+  end
+  names.each do |name|
     u = User.create(
       email: "#{name}@example.com",
       username: name.downcase,
