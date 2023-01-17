@@ -1,3 +1,39 @@
 <h1>
   <%= @user.username %>
 </h1>
+
+<h2>Own photos</h2>
+
+<ul>
+  <% current_user.own_photos.each do |photo| %>
+    <div class="row mb-3">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <%= image_tag photo.image, class:"card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= photo.owner.username %></h5>
+            <p class="card-text"><%= photo.caption %></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <% photo.comments.each do |comment| %>
+              <div class="card border-0">
+                <div class="row">
+                  <img src="..." class="mr-3" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= comment.author.username %></h5>
+                    <p class="card-text"><%= comment.body %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </ul>
+          <div class="card-body">
+            <%= render "comments/form", comment: photo.comments.build %>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</ul>
