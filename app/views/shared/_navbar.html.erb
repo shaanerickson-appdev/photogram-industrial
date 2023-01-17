@@ -11,10 +11,8 @@
             Resources
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/photos">Photos</a></li>
-            <li><a class="dropdown-item" href="/comments">Comments</a></li>
-            <li><a class="dropdown-item" href="/follow_requests">Follow requests</a></li>
-            <li><a class="dropdown-item" href="/likes">Likes</a></li>
+            <li><%= link_to "Feed", feed_path(current_user.username), class: "dropdown-item" %></li>
+            <li><%= link_to "Discover", discover_path(current_user.username), class: "dropdown-item" %></li>
           </ul>
         </li>
       </ul>
@@ -24,16 +22,16 @@
           <li class="nav-item">
             <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
           </li>
-        <li class="nav-item">
-          <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+          </li>
         <% else %>
-        <li class="nav-item">
-          <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
+          <li class="nav-item">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
         <% end %>
       </ul>
     </div>

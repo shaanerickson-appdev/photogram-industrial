@@ -6,7 +6,7 @@
   <div class="col-md-6 offset-md-3">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <div class="nav-link active">
+        <div class="nav-link">
           <%= link_to "Posts", user_path(@user.username) %>
           <span class="badge rounded-pill bg-info text-dark"><%= @user.own_photos.count %></span>
         </div>
@@ -30,11 +30,11 @@
       <li class="nav-item">
         <div class="nav-link">
           <%= link_to "Followers", followers_path(@user.username) %>
-          <span class="badge rounded-pill bg-light text-dark"><%= @user.followers.count %></span>
+          <span class="badge rounded-pill bg-light text-dark"><%= @user.leaders.count %></span>
         </div>
       </li>
       <li class="nav-item">
-        <div class="nav-link">
+        <div class="nav-link active">
           <%= link_to "Following", following_path(@user.username) %>
           <span class="badge rounded-pill bg-light text-dark"><%= @user.leaders.count %></span>
         </div>
@@ -43,6 +43,13 @@
   </div>
 </div>
 
-<% @user.own_photos.each do |photo| %>
-  <%= render "photos/photo", photo: photo %>
-<% end %>
+<div class="col-md-6 offset-md-3">
+  <ul class="list-group">
+    <% @user.leaders.each do |leader| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= link_to leader.username, user_path(leader.username) %>
+        <span class="badge bg-primary rounded-pill"><%= leader.own_photos.count %> photos</span>
+      </li>
+    <% end %>
+  </ul>
+</div>

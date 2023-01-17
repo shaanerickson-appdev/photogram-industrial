@@ -27,10 +27,17 @@ task sample_data: :environment do
   users = User.all
   users.each do |first_user|
     users.each do |second_user|
-      if first_user != second_user && rand < 0.75
+      if rand < 0.75
         FollowRequest.create(
           recipient: second_user,
           sender: first_user,
+          status: FollowRequest.statuses.keys.sample
+        )
+      end
+      if rand < 0.75
+        FollowRequest.create(
+          recipient: first_user,
+          sender: second_user,
           status: FollowRequest.statuses.keys.sample
         )
       end
@@ -40,7 +47,7 @@ task sample_data: :environment do
 
   users.each do |user|
     rand(15).times do
-      photo = user.photos.create(
+      photo = user.own_photos.create(
         caption: Faker::Quote.jack_handey,
         image: "https://robohash.org/#{rand(9999)}"
       )

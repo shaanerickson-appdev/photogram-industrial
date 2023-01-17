@@ -14,11 +14,10 @@
   <%= form.hidden_field :photo_id %>
 
   <div class="form-group">
-    <%= form.label :body %>
     <%= form.text_area :body, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-outline-secondary btn-block" %>
+    <%= form.submit "Comment", class: "btn btn-outline-secondary btn-block" %>
   </div>
 <% end %>

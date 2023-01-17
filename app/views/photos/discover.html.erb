@@ -6,7 +6,7 @@
   <div class="col-md-6 offset-md-3">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <div class="nav-link active">
+        <div class="nav-link">
           <%= link_to "Posts", user_path(@user.username) %>
           <span class="badge rounded-pill bg-info text-dark"><%= @user.own_photos.count %></span>
         </div>
@@ -43,6 +43,6 @@
   </div>
 </div>
 
-<% @user.own_photos.each do |photo| %>
+<% @user.discovered.past_week.by_likes.uniq.each do |photo| %>
   <%= render "photos/photo", photo: photo %>
 <% end %>
